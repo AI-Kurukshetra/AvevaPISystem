@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
@@ -22,7 +28,7 @@
   --background: #090d14;
   --foreground: #d3d7de;
   --card: #101824;
-  --border: #1e2c3f;
+  --border: #2a3b52;
   --surface: #0f1624;
   --muted: #8896a9;
   --accent: #2db5ff;
@@ -40,7 +46,17 @@ body {
 }
 
 .grid-bg {
+  background-image: none;
+}
+
+.dark .grid-bg {
   background-image: linear-gradient(var(--grid-line-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+@layer utilities {
+  .dark .border-border {
+    border-color: #3a4f6b;
+  }
 }

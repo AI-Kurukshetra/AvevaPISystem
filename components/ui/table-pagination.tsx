@@ -20,7 +20,7 @@ export function TablePagination({
   onNext
 }: TablePaginationProps) {
   return (
-    <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted">
+    <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted dark:border-border">
       <span>
         Showing {startItem}-{endItem} of {totalItems}
       </span>

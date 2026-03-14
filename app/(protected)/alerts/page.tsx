@@ -215,7 +215,7 @@ export default function AlertsPage() {
         </div>
       </Card>
 
-      <Card className="space-y-3 border-warning/30 bg-warning/10">
+      <Card className="space-y-3 dark:border-border">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold text-warning">Alert Correlation</h3>
           <span className="text-xs text-muted">Grouped repeated patterns</span>
@@ -230,7 +230,7 @@ export default function AlertsPage() {
         ) : (
           <div className="space-y-2">
             {correlatedIncidents.map((incident) => (
-              <div key={incident.key} className="rounded-md border border-warning/30 bg-warning/10 px-3 py-2">
+              <div key={incident.key} className="rounded-md border dark:border-border px-3 py-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-warning">Cluster x{incident.count}</span>
                   <span className="text-muted">{new Date(incident.latestAt).toLocaleString()}</span>
@@ -246,7 +246,7 @@ export default function AlertsPage() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[760px] text-sm">
             <thead>
-              <tr className="border-b border-border text-left text-muted">
+              <tr className="border-b border-border text-left text-muted border-border/90">
                 <th className="py-2">Time</th>
                 <th>Priority</th>
                 <th>Severity</th>
@@ -258,7 +258,7 @@ export default function AlertsPage() {
             <tbody>
               {isInitialLoading
                 ? Array.from({ length: 8 }).map((_, index) => (
-                    <tr key={`skeleton-${index}`} className="border-b border-border/50">
+                    <tr key={`skeleton-${index}`} className="border-b border-border/50 dark:border-border">
                       <td className="py-2 pr-2"><Skeleton className="h-4 w-36" /></td>
                       <td className="pr-2"><Skeleton className="h-4 w-12" /></td>
                       <td className="pr-2"><Skeleton className="h-4 w-20" /></td>
@@ -268,7 +268,7 @@ export default function AlertsPage() {
                     </tr>
                   ))
                 : pagedAlerts.map((alert) => (
-                    <tr key={alert.id} className="border-b border-border/50">
+                    <tr key={alert.id} className="border-b border-border/50 dark:border-border">
                       <td className="py-2">{new Date(alert.created_at).toLocaleString()}</td>
                       <td>
                         <span
@@ -297,7 +297,7 @@ export default function AlertsPage() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted">
+        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted dark:border-border">
           <span>
             {isInitialLoading
               ? "Loading alerts..."

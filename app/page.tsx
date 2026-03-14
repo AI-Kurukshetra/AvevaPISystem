@@ -95,7 +95,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-accent/30 bg-accent/10 p-6">
+        <section className="rounded-xl border dark:border-border p-6">
           <h2 className="text-xl font-semibold text-foreground">Ready to modernize factory visibility?</h2>
           <p className="mt-2 text-sm text-foreground/80">Create your account and start monitoring assets in realtime.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">

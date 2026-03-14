@@ -225,7 +225,7 @@ export default function SensorsPage() {
         )}
       </Card>
 
-      <Card className="border-accent/30 bg-accent/10 p-4">
+      <Card className="dark:border-border p-4">
         <p className="text-sm font-medium text-accent">Smart Rule Suggestion</p>
         {isInitialLoading || recommendationLoading ? (
           <Skeleton className="mt-2 h-4 w-64 bg-accent/20" />
@@ -246,7 +246,7 @@ export default function SensorsPage() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-sm">
             <thead>
-              <tr className="border-b border-border text-left text-muted">
+              <tr className="border-b border-border text-left text-muted border-border/90">
                 <th className="py-2">Tag</th>
                 <th>Unit</th>
                 <th>Equipment</th>
@@ -256,7 +256,7 @@ export default function SensorsPage() {
             <tbody>
               {isInitialLoading
                 ? Array.from({ length: 8 }).map((_, index) => (
-                    <tr key={`skeleton-${index}`} className="border-b border-border/60">
+                    <tr key={`skeleton-${index}`} className="border-b border-border/60 dark:border-border">
                       <td className="py-2 pr-2"><Skeleton className="h-4 w-24" /></td>
                       <td className="pr-2"><Skeleton className="h-4 w-14" /></td>
                       <td className="pr-2"><Skeleton className="h-4 w-40" /></td>
@@ -264,7 +264,7 @@ export default function SensorsPage() {
                     </tr>
                   ))
                 : pagedSensors.map((sensor) => (
-                    <tr key={sensor.id} className="border-b border-border/60">
+                    <tr key={sensor.id} className="border-b border-border/60 dark:border-border">
                       <td className="py-2">{sensor.tag_name}</td>
                       <td>{sensor.unit}</td>
                       <td>{sensor.equipment?.name ?? "-"}</td>
@@ -274,7 +274,7 @@ export default function SensorsPage() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted">
+        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted dark:border-border">
           <span>
             {isInitialLoading
               ? "Loading sensors..."

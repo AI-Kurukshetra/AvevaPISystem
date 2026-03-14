@@ -14,7 +14,7 @@ type AlertItem = {
   priority?: "P1" | "P2" | "P3";
 };
 
-export function NotificationCenter() {
+export function NotificationCenter({ compact = false }: { compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const [alerts, setAlerts] = useState<AlertItem[]>([]);
   const [seenIds, setSeenIds] = useState<Record<string, true>>({});
@@ -59,14 +59,17 @@ export function NotificationCenter() {
   const unreadCount = useMemo(() => alerts.filter((alert) => !seenIds[alert.id]).length, [alerts, seenIds]);
 
   return (
-    <div className="fixed right-4 top-4 z-[60] w-11">
+    <div className={cn("relative z-[60]", compact ? "w-8 md:w-9" : "w-11")}>
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
         aria-label="Open notifications"
-        className="relative flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface/95 text-foreground shadow-lg transition-colors hover:bg-surface"
+        className={cn(
+          "relative flex items-center justify-center rounded-full border border-border bg-surface/95 text-foreground shadow-lg transition-colors hover:bg-surface",
+          compact ? "h-8 w-8 md:h-9 md:w-9" : "h-11 w-11"
+        )}
       >
-        <Bell className="h-5 w-5" />
+        <Bell className={cn(compact ? "h-4 w-4" : "h-5 w-5")} />
         {unreadCount > 0 ? (
           <span className="absolute -right-1 -top-1 min-w-5 rounded-full bg-danger px-1.5 py-0.5 text-center text-[10px] font-semibold text-white">
             {unreadCount > 9 ? "9+" : unreadCount}
@@ -75,7 +78,12 @@ export function NotificationCenter() {
       </button>
 
       {open ? (
-        <div className="absolute right-0 top-12 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-border bg-surface/95 shadow-2xl backdrop-blur-md">
+        <div
+          className={cn(
+            "absolute w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-border bg-card shadow-2xl ring-1 ring-white/10 backdrop-blur-md",
+            compact ? "top-10 right-0 md:top-11 md:left-0 md:right-auto" : "top-12 right-0"
+          )}
+        >
           <div className="border-b border-border px-4 py-3">
             <h3 className="text-sm font-semibold text-foreground">Notification Center</h3>
             <p className="text-xs text-muted">Live alert updates</p>

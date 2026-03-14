@@ -8,6 +8,7 @@ import { Activity, AlertTriangle, Factory, FileBarChart2, Gauge, LogOut, Menu, W
 import { cn } from "@/lib/utils/cn";
 import { supabase } from "@/lib/supabase/client";
 import { UserProfileMenu } from "@/components/layout/user-profile-menu";
+import { NotificationCenter } from "@/components/layout/notification-center";
 import { useToast } from "@/components/ui/toaster";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
@@ -47,7 +48,7 @@ export function Sidebar() {
 
   return (
     <>
-      <aside className="hidden w-64 border-r border-border bg-surface/90 p-4 backdrop-blur-md md:block">
+      <aside className="hidden w-64 border-r border-border bg-card/95 p-4 shadow-[inset_-1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-md md:block">
         <div className="mb-6">
           <h1 className="flex items-center gap-2 text-lg font-semibold tracking-wide text-accent">
             <Activity className="h-5 w-5" /> SMARTFACTORY AI
@@ -86,17 +87,19 @@ export function Sidebar() {
             <LogOut className="h-4 w-4" />
             Logout
           </button>
+          <NotificationCenter compact />
           <ThemeToggle className="flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
         </div>
       </aside>
 
-      <div className="sticky top-0 z-30 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur-md md:hidden">
+      <div className="sticky top-0 z-30 border-b border-border bg-card/95 px-4 py-3 backdrop-blur-md md:hidden">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm font-semibold tracking-wide text-accent">
             <Activity className="h-4 w-4" />
             SMARTFACTORY AI
           </div>
           <div className="flex items-center gap-2">
+            <NotificationCenter compact />
             <ThemeToggle className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
             <button
               type="button"
@@ -118,7 +121,7 @@ export function Sidebar() {
             onClick={closeMobileMenu}
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           />
-          <aside className="absolute left-0 top-0 h-full w-72 border-r border-border bg-surface/95 p-4 shadow-xl">
+          <aside className="absolute left-0 top-0 h-full w-72 border-r border-border bg-card/95 p-4 shadow-2xl backdrop-blur-md">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="flex items-center gap-2 text-sm font-semibold tracking-wide text-accent">
                 <Activity className="h-4 w-4" />

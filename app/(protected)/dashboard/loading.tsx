@@ -23,7 +23,7 @@ export default function DashboardLoading() {
         ))}
       </section>
 
-      <section className="mt-4 rounded-xl border border-danger/30 bg-danger/10 p-4">
+      <section className="mt-4 rounded-xl border border-border p-4">
         <Skeleton className="mb-2 h-4 w-40 bg-danger/30" />
         <Skeleton className="h-4 w-[85%] bg-danger/20" />
       </section>

@@ -175,7 +175,7 @@ export default function AssetsPage() {
         </div>
       </section>
 
-      <Card className="space-y-3 border-border/80 bg-surface/90">
+      <Card className="space-y-3 dark:border-border bg-surface/90">
         <div className="flex items-center gap-2 text-sm font-medium text-foreground">
           <Network className="h-4 w-4 text-accent" />
           Add New Hierarchy Node
@@ -214,7 +214,7 @@ export default function AssetsPage() {
       <section className="space-y-3">
         {isInitialLoading ? (
           Array.from({ length: 2 }).map((_, index) => (
-            <Card key={`tree-skeleton-${index}`} className="border-border/80 bg-card/85 p-4">
+            <Card key={`tree-skeleton-${index}`} className="dark:border-border bg-card/85 p-4">
               <Skeleton className="mb-4 h-5 w-52" />
               <div className="grid min-w-[880px] grid-cols-4 gap-3">
                 <Skeleton className="h-28 w-full" />
@@ -225,7 +225,7 @@ export default function AssetsPage() {
             </Card>
           ))
         ) : tree.length === 0 ? (
-          <Card className="border-dashed border-border/80 bg-surface/70 p-10 text-center text-sm text-muted">
+          <Card className="border-dashed dark:border-border bg-surface/70 p-10 text-center text-sm text-muted">
             No assets yet. Create a Site to start building hierarchy.
           </Card>
         ) : (
@@ -241,8 +241,8 @@ export default function AssetsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.28, delay: siteIndex * 0.04 }}
               >
-                <Card className="relative overflow-hidden border-border/80 bg-card/85 p-0">
-                  <div className="border-b border-border/70 bg-surface/90 px-4 py-3">
+                <Card className="relative overflow-hidden dark:border-border bg-card/85 p-0">
+                  <div className="border-b border-border bg-surface/90 px-4 py-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Factory className="h-4 w-4 text-sky-500" />
@@ -326,7 +326,7 @@ export default function AssetsPage() {
                     </div>
                   </div>
 
-                  <div className="border-t border-border/70 bg-card px-4 py-2">
+                  <div className="border-t border-border bg-card px-4 py-2">
                     <p className="text-xs text-muted">Flow: Site → Area → Line → Equipment</p>
                   </div>
                 </Card>
