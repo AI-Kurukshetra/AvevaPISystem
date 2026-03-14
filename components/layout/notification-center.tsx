@@ -64,7 +64,7 @@ export function NotificationCenter() {
         type="button"
         onClick={() => setOpen((current) => !current)}
         aria-label="Open notifications"
-        className="relative flex h-11 w-11 items-center justify-center rounded-full border border-border bg-[#0d1728]/95 text-slate-200 shadow-lg transition-colors hover:bg-[#13213a]"
+        className="relative flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface/95 text-foreground shadow-lg transition-colors hover:bg-surface"
       >
         <Bell className="h-5 w-5" />
         {unreadCount > 0 ? (
@@ -75,31 +75,31 @@ export function NotificationCenter() {
       </button>
 
       {open ? (
-        <div className="absolute right-0 top-12 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-border bg-[#0b1322]/95 shadow-2xl backdrop-blur-md">
+        <div className="absolute right-0 top-12 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-border bg-surface/95 shadow-2xl backdrop-blur-md">
           <div className="border-b border-border px-4 py-3">
-            <h3 className="text-sm font-semibold text-slate-100">Notification Center</h3>
-            <p className="text-xs text-slate-400">Live alert updates</p>
+            <h3 className="text-sm font-semibold text-foreground">Notification Center</h3>
+            <p className="text-xs text-muted">Live alert updates</p>
           </div>
           <div className="max-h-96 overflow-y-auto p-2">
             {alerts.length === 0 ? (
-              <p className="px-2 py-3 text-xs text-slate-400">No notifications yet.</p>
+              <p className="px-2 py-3 text-xs text-muted">No notifications yet.</p>
             ) : (
               alerts.map((alert) => (
                 <div
                   key={alert.id}
                   className={cn(
                     "mb-2 rounded-lg border px-3 py-2",
-                    seenIds[alert.id] ? "border-border/60 bg-[#0e182a]" : "border-accent/40 bg-accent/10"
+                    seenIds[alert.id] ? "border-border/60 bg-card" : "border-accent/40 bg-accent/10"
                   )}
                 >
                   <div className="flex items-center justify-between gap-2 text-xs">
-                    <span className="inline-flex items-center gap-1 text-slate-300">
+                    <span className="inline-flex items-center gap-1 text-foreground/80">
                       <AlertTriangle className="h-3.5 w-3.5 text-warning" />
                       {alert.priority ?? "P3"} • {alert.severity}
                     </span>
-                    <span className="text-slate-500">{new Date(alert.created_at).toLocaleTimeString()}</span>
+                    <span className="text-muted">{new Date(alert.created_at).toLocaleTimeString()}</span>
                   </div>
-                  <p className="mt-1 text-xs text-slate-200">{alert.message}</p>
+                  <p className="mt-1 text-xs text-foreground">{alert.message}</p>
                 </div>
               ))
             )}

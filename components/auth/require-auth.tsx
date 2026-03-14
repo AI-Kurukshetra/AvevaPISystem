@@ -44,7 +44,7 @@ export function RequireAuth({ children }: { children: ReactNode }) {
 
   if (!ready) {
     return (
-      <div className="flex min-h-screen items-center justify-center px-4 text-sm text-slate-400">
+      <div className="flex min-h-screen items-center justify-center px-4 text-sm text-muted">
         Checking session...
       </div>
     );

@@ -25,17 +25,33 @@ export function RealtimeLineChart({ title, color, data }: Props) {
 
   return (
     <div className="h-64 rounded-xl border border-border bg-card/80 p-4">
-      <h3 className="mb-2 text-sm text-slate-300">{title}</h3>
+      <h3 className="mb-2 text-sm text-muted">{title}</h3>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart data={chartData}>
-          <XAxis dataKey="time" stroke="#6b7a90" tick={{ fontSize: 11 }} />
-          <YAxis stroke="#6b7a90" tick={{ fontSize: 11 }} />
-          <Tooltip contentStyle={{ background: "#0b1320", border: "1px solid #1e2c3f" }} />
+          <XAxis
+            dataKey="time"
+            tick={{ fontSize: 11, fill: "var(--muted)" }}
+            axisLine={{ stroke: "var(--muted)" }}
+            tickLine={{ stroke: "var(--muted)" }}
+          />
+          <YAxis
+            tick={{ fontSize: 11, fill: "var(--muted)" }}
+            axisLine={{ stroke: "var(--muted)" }}
+            tickLine={{ stroke: "var(--muted)" }}
+          />
+          <Tooltip
+            contentStyle={{
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
+              color: "var(--foreground)",
+              borderRadius: "8px"
+            }}
+          />
           <Line type="monotone" dataKey="value" stroke={color} strokeWidth={2} dot={false} />
           {chartData
             .filter((point) => point.is_anomaly)
             .map((point) => (
-              <ReferenceDot key={point.id} x={point.time} y={point.value} r={5} fill="#ff5d73" stroke="none" />
+              <ReferenceDot key={point.id} x={point.time} y={point.value} r={5} fill="var(--danger)" stroke="none" />
             ))}
         </LineChart>
       </ResponsiveContainer>

@@ -150,33 +150,33 @@ export default function AssetsPage() {
 
   return (
     <div className="space-y-5">
-      <section className="rounded-2xl border border-border bg-[linear-gradient(130deg,#0d1b2f_0%,#0a101a_58%,#131f31_100%)] p-5">
-        <h2 className="text-2xl font-semibold tracking-tight text-slate-100">Asset Hierarchy Command Center</h2>
-        <p className="mt-1 text-sm text-slate-400">
+      <section className="rounded-2xl border border-border bg-card p-5">
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Asset Hierarchy Command Center</h2>
+        <p className="mt-1 text-sm text-muted">
           Build and monitor your plant structure from site level down to individual machines.
         </p>
         <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
           <Card className="border-sky-500/25 bg-sky-500/10 p-3">
-            <p className="text-xs uppercase tracking-wider text-sky-300">Sites</p>
-            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-sky-400/30" /> : <p className="mt-1 text-xl font-semibold text-sky-100">{stats.sites}</p>}
+            <p className="text-xs uppercase tracking-wider text-sky-500">Sites</p>
+            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-sky-400/30" /> : <p className="mt-1 text-xl font-semibold text-sky-600 dark:text-sky-100">{stats.sites}</p>}
           </Card>
           <Card className="border-emerald-500/25 bg-emerald-500/10 p-3">
-            <p className="text-xs uppercase tracking-wider text-emerald-300">Areas</p>
-            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-emerald-400/30" /> : <p className="mt-1 text-xl font-semibold text-emerald-100">{stats.areas}</p>}
+            <p className="text-xs uppercase tracking-wider text-emerald-500">Areas</p>
+            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-emerald-400/30" /> : <p className="mt-1 text-xl font-semibold text-emerald-600 dark:text-emerald-100">{stats.areas}</p>}
           </Card>
           <Card className="border-amber-500/25 bg-amber-500/10 p-3">
-            <p className="text-xs uppercase tracking-wider text-amber-300">Lines</p>
-            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-amber-400/30" /> : <p className="mt-1 text-xl font-semibold text-amber-100">{stats.lines}</p>}
+            <p className="text-xs uppercase tracking-wider text-amber-500">Lines</p>
+            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-amber-400/30" /> : <p className="mt-1 text-xl font-semibold text-amber-600 dark:text-amber-100">{stats.lines}</p>}
           </Card>
           <Card className="border-rose-500/25 bg-rose-500/10 p-3">
-            <p className="text-xs uppercase tracking-wider text-rose-300">Equipment</p>
-            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-rose-400/30" /> : <p className="mt-1 text-xl font-semibold text-rose-100">{stats.equipment}</p>}
+            <p className="text-xs uppercase tracking-wider text-rose-500">Equipment</p>
+            {isInitialLoading ? <Skeleton className="mt-2 h-7 w-10 bg-rose-400/30" /> : <p className="mt-1 text-xl font-semibold text-rose-600 dark:text-rose-100">{stats.equipment}</p>}
           </Card>
         </div>
       </section>
 
-      <Card className="space-y-3 border-border/80 bg-[#0b1422]/90">
-        <div className="flex items-center gap-2 text-sm font-medium text-slate-200">
+      <Card className="space-y-3 border-border/80 bg-surface/90">
+        <div className="flex items-center gap-2 text-sm font-medium text-foreground">
           <Network className="h-4 w-4 text-accent" />
           Add New Hierarchy Node
         </div>
@@ -184,7 +184,7 @@ export default function AssetsPage() {
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="rounded-md border border-border bg-[#0f1624] px-3 py-2 text-sm"
+            className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
           >
             <option value="site">Site</option>
             <option value="area">Area</option>
@@ -198,7 +198,7 @@ export default function AssetsPage() {
             <select
               value={parentId}
               onChange={(e) => setParentId(e.target.value)}
-              className="rounded-md border border-border bg-[#0f1624] px-3 py-2 text-sm"
+              className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
             >
               {options.map((option) => (
                 <option key={option.id} value={option.id}>
@@ -214,7 +214,7 @@ export default function AssetsPage() {
       <section className="space-y-3">
         {isInitialLoading ? (
           Array.from({ length: 2 }).map((_, index) => (
-            <Card key={`tree-skeleton-${index}`} className="border-border/80 bg-[#091221]/85 p-4">
+            <Card key={`tree-skeleton-${index}`} className="border-border/80 bg-card/85 p-4">
               <Skeleton className="mb-4 h-5 w-52" />
               <div className="grid min-w-[880px] grid-cols-4 gap-3">
                 <Skeleton className="h-28 w-full" />
@@ -225,7 +225,7 @@ export default function AssetsPage() {
             </Card>
           ))
         ) : tree.length === 0 ? (
-          <Card className="border-dashed border-border/80 bg-[#0b1422]/70 p-10 text-center text-sm text-slate-400">
+          <Card className="border-dashed border-border/80 bg-surface/70 p-10 text-center text-sm text-muted">
             No assets yet. Create a Site to start building hierarchy.
           </Card>
         ) : (
@@ -241,15 +241,15 @@ export default function AssetsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.28, delay: siteIndex * 0.04 }}
               >
-                <Card className="relative overflow-hidden border-border/80 bg-[#091221]/85 p-0">
-                  <div className="border-b border-border/70 bg-[#0e1a2e]/90 px-4 py-3">
+                <Card className="relative overflow-hidden border-border/80 bg-card/85 p-0">
+                  <div className="border-b border-border/70 bg-surface/90 px-4 py-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Factory className="h-4 w-4 text-sky-300" />
-                        <p className="text-sm text-sky-200">Site</p>
-                        <p className="text-base font-semibold text-slate-100">{site.name}</p>
+                        <Factory className="h-4 w-4 text-sky-500" />
+                        <p className="text-sm text-sky-500">Site</p>
+                        <p className="text-base font-semibold text-foreground">{site.name}</p>
                       </div>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-muted">
                         {areas.length} areas • {lines.length} lines • {equipment.length} equipment
                       </p>
                     </div>
@@ -258,22 +258,22 @@ export default function AssetsPage() {
                   <div className="overflow-x-auto p-4">
                     <div className="grid min-w-[880px] grid-cols-4 gap-3">
                       <div className="rounded-xl border border-sky-500/30 bg-sky-500/10 p-3">
-                        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-sky-300">Site</p>
-                        <div className="rounded-md border border-sky-500/30 bg-[#10213c] px-3 py-2 text-sm text-sky-100">
+                        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-sky-500">Site</p>
+                        <div className="rounded-md border border-sky-500/30 bg-sky-500/15 px-3 py-2 text-sm text-sky-700 dark:text-sky-100">
                           {site.name}
                         </div>
                       </div>
 
                       <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3">
-                        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-emerald-300">Areas</p>
+                        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-emerald-500">Areas</p>
                         <div className="space-y-1">
                           {areas.length === 0 ? (
-                            <p className="text-xs text-slate-500">No areas</p>
+                            <p className="text-xs text-muted">No areas</p>
                           ) : (
                             areas.map((area) => (
                               <div
                                 key={area.id}
-                                className="rounded-md border border-emerald-500/25 bg-[#11251f] px-3 py-1.5 text-sm text-emerald-100"
+                                className="rounded-md border border-emerald-500/25 bg-emerald-500/15 px-3 py-1.5 text-sm text-emerald-700 dark:text-emerald-100"
                               >
                                 {area.name}
                               </div>
@@ -283,18 +283,18 @@ export default function AssetsPage() {
                       </div>
 
                       <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3">
-                        <p className="mb-2 flex items-center gap-1 text-xs font-medium uppercase tracking-wide text-amber-300">
+                        <p className="mb-2 flex items-center gap-1 text-xs font-medium uppercase tracking-wide text-amber-500">
                           <Layers3 className="h-3.5 w-3.5" />
                           Production Lines
                         </p>
                         <div className="space-y-1">
                           {lines.length === 0 ? (
-                            <p className="text-xs text-slate-500">No lines</p>
+                            <p className="text-xs text-muted">No lines</p>
                           ) : (
                             lines.map((line) => (
                               <div
                                 key={line.id}
-                                className="rounded-md border border-amber-500/25 bg-[#2a220f] px-3 py-1.5 text-sm text-amber-100"
+                                className="rounded-md border border-amber-500/25 bg-amber-500/15 px-3 py-1.5 text-sm text-amber-700 dark:text-amber-100"
                               >
                                 {line.name}
                               </div>
@@ -304,18 +304,18 @@ export default function AssetsPage() {
                       </div>
 
                       <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-3">
-                        <p className="mb-2 flex items-center gap-1 text-xs font-medium uppercase tracking-wide text-rose-300">
+                        <p className="mb-2 flex items-center gap-1 text-xs font-medium uppercase tracking-wide text-rose-500">
                           <Wrench className="h-3.5 w-3.5" />
                           Equipment
                         </p>
                         <div className="space-y-1">
                           {equipment.length === 0 ? (
-                            <p className="text-xs text-slate-500">No equipment</p>
+                            <p className="text-xs text-muted">No equipment</p>
                           ) : (
                             equipment.map((eq) => (
                               <div
                                 key={eq.id}
-                                className="rounded-md border border-rose-500/25 bg-[#2b1220] px-3 py-1.5 text-sm text-rose-100"
+                                className="rounded-md border border-rose-500/25 bg-rose-500/15 px-3 py-1.5 text-sm text-rose-700 dark:text-rose-100"
                               >
                                 {eq.name}
                               </div>
@@ -326,8 +326,8 @@ export default function AssetsPage() {
                     </div>
                   </div>
 
-                  <div className="border-t border-border/70 bg-[#0a1220] px-4 py-2">
-                    <p className="text-xs text-slate-500">Flow: Site → Area → Line → Equipment</p>
+                  <div className="border-t border-border/70 bg-card px-4 py-2">
+                    <p className="text-xs text-muted">Flow: Site → Area → Line → Equipment</p>
                   </div>
                 </Card>
               </motion.div>

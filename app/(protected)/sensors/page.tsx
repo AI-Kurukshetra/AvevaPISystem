@@ -191,7 +191,7 @@ export default function SensorsPage() {
               <select
                 value={form.equipment_id}
                 onChange={(e) => setForm((f) => ({ ...f, equipment_id: e.target.value }))}
-                className="rounded-md border border-border bg-[#0f1624] px-3 py-2 text-sm"
+                className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
               >
                 {equipment.map((eq) => (
                   <option key={eq.id} value={eq.id}>
@@ -205,7 +205,7 @@ export default function SensorsPage() {
                   const tagName = e.target.value;
                   setForm((f) => ({ ...f, tag_name: tagName, unit: defaultTagUnits[tagName] ?? f.unit }));
                 }}
-                className="rounded-md border border-border bg-[#0f1624] px-3 py-2 text-sm"
+                className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
               >
                 {tagOptions.map((tag) => (
                   <option key={tag} value={tag}>
@@ -231,13 +231,13 @@ export default function SensorsPage() {
           <Skeleton className="mt-2 h-4 w-64 bg-accent/20" />
         ) : (
           <>
-            <p className="mt-1 text-sm text-slate-200">
+            <p className="mt-1 text-sm text-foreground">
               Suggested threshold for <span className="font-medium">{form.tag_name}</span>:{" "}
               <span className="font-semibold text-accent">
                 {recommendedThreshold !== null ? `${recommendedThreshold} ${form.unit}` : "Unavailable"}
               </span>
             </p>
-            <p className="mt-1 text-xs text-slate-400">{recommendationNote}</p>
+            <p className="mt-1 text-xs text-muted">{recommendationNote}</p>
           </>
         )}
       </Card>
@@ -246,7 +246,7 @@ export default function SensorsPage() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-sm">
             <thead>
-              <tr className="border-b border-border text-left text-slate-400">
+              <tr className="border-b border-border text-left text-muted">
                 <th className="py-2">Tag</th>
                 <th>Unit</th>
                 <th>Equipment</th>
@@ -274,7 +274,7 @@ export default function SensorsPage() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-slate-400">
+        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted">
           <span>
             {isInitialLoading
               ? "Loading sensors..."
@@ -284,7 +284,7 @@ export default function SensorsPage() {
             <Button type="button" className="px-2 py-1" disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
               Previous
             </Button>
-            <span className="min-w-16 text-center text-slate-300">
+            <span className="min-w-16 text-center text-foreground/80">
               Page {page} / {totalPages}
             </span>
             <Button

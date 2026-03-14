@@ -139,7 +139,7 @@ export function AuthModal({ triggerLabel, triggerClassName, defaultMode = "login
           </Button>
         </form>
 
-        <p className="mt-3 text-xs text-slate-400">
+        <p className="mt-3 text-xs text-muted">
           {isLogin ? "No account yet?" : "Already have an account?"}{" "}
           <button
             type="button"

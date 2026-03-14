@@ -105,11 +105,11 @@ export function AIAssistantPanel() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed bottom-24 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-2xl border border-slate-700/80 bg-[#0a1220]/95 shadow-2xl backdrop-blur-lg"
+            className="fixed bottom-24 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-2xl border border-border bg-surface/95 shadow-2xl backdrop-blur-lg"
           >
-            <header className="border-b border-slate-700/70 bg-gradient-to-r from-blue-500/20 to-violet-500/20 px-4 py-3">
-              <h3 className="text-sm font-semibold text-slate-100">AI Assistant</h3>
-              <p className="text-xs text-slate-400">Live insights for industrial telemetry</p>
+            <header className="border-b border-border bg-gradient-to-r from-blue-500/20 to-violet-500/20 px-4 py-3">
+              <h3 className="text-sm font-semibold text-foreground">AI Assistant</h3>
+              <p className="text-xs text-muted">Live insights for industrial telemetry</p>
             </header>
 
             <div className="max-h-72 space-y-3 overflow-y-auto px-4 py-3">
@@ -122,8 +122,8 @@ export function AIAssistantPanel() {
                     className={cn(
                       "max-w-[85%] rounded-2xl px-3 py-2 text-xs sm:text-sm",
                       message.role === "user"
-                        ? "rounded-br-sm bg-accent text-slate-950"
-                        : "rounded-bl-sm border border-slate-700 bg-[#121c2d] text-slate-200"
+                        ? "rounded-br-sm bg-accent text-white"
+                        : "rounded-bl-sm border border-border bg-card text-foreground"
                     )}
                   >
                     {message.content}
@@ -132,21 +132,21 @@ export function AIAssistantPanel() {
               ))}
               {loading ? (
                 <div className="flex justify-start">
-                  <p className="rounded-2xl rounded-bl-sm border border-slate-700 bg-[#121c2d] px-3 py-2 text-xs text-slate-300">
+                  <p className="rounded-2xl rounded-bl-sm border border-border bg-card px-3 py-2 text-xs text-foreground/80">
                     Analyzing telemetry...
                   </p>
                 </div>
               ) : null}
             </div>
 
-            <div className="border-t border-slate-700/70 px-4 pb-2 pt-3">
+            <div className="border-t border-border px-4 pb-2 pt-3">
               <div className="mb-3 flex flex-wrap gap-2">
                 {QUICK_SUGGESTIONS.map((item) => (
                   <button
                     key={item}
                     type="button"
                     onClick={() => void ask(item)}
-                    className="rounded-full border border-slate-600 bg-slate-800/80 px-3 py-1 text-[11px] text-slate-200 transition-colors hover:border-blue-400/70 hover:bg-slate-700"
+                    className="rounded-full border border-border bg-surface px-3 py-1 text-[11px] text-foreground/80 transition-colors hover:border-accent/70 hover:bg-surface/80"
                   >
                     {item}
                   </button>
@@ -158,12 +158,12 @@ export function AIAssistantPanel() {
                   value={question}
                   onChange={(event) => setQuestion(event.target.value)}
                   placeholder="Ask about alerts or anomalies..."
-                  className="h-9 bg-[#0f1a2b] text-xs"
+                  className="h-9 text-xs"
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex h-9 w-9 items-center justify-center rounded-md bg-accent text-slate-950 transition-colors hover:bg-accent/90 disabled:opacity-50"
+                  className="flex h-9 w-9 items-center justify-center rounded-md bg-accent text-white transition-colors hover:bg-accent/90 disabled:opacity-50"
                   aria-label="Send message"
                 >
                   <Send className="h-4 w-4" />

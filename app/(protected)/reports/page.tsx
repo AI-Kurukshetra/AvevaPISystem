@@ -32,7 +32,7 @@ export default function ReportsPage() {
       <h2 className="text-2xl font-semibold">Reports Export</h2>
       <div className="space-y-3 rounded-xl border border-border bg-card/80 p-4">
         <input
-          className="w-full rounded-md border border-border bg-[#0f1624] px-3 py-2 text-sm"
+          className="w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent/40"
           placeholder="Optional Sensor ID"
           value={sensorId}
           onChange={(e) => setSensorId(e.target.value)}

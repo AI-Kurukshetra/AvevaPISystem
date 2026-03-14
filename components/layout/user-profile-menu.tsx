@@ -373,7 +373,7 @@ export function UserProfileMenu() {
 
   if (loading) {
     return (
-      <div className="rounded-lg border border-border bg-[#0f1a2a] p-3 text-xs text-slate-400">
+      <div className="rounded-lg border border-border bg-surface p-3 text-xs text-muted">
         Loading profile...
       </div>
     );
@@ -384,7 +384,7 @@ export function UserProfileMenu() {
       <button
         type="button"
         onClick={() => setDropdownOpen((current) => !current)}
-        className="flex w-full items-center justify-between rounded-lg border border-border bg-[#0f1a2a] px-3 py-2 transition-colors hover:bg-slate-800/60"
+        className="flex w-full items-center justify-between rounded-lg border border-border bg-surface px-3 py-2 transition-colors hover:bg-surface/80"
       >
         <span className="flex min-w-0 items-center gap-2">
           {avatarUrl ? (
@@ -395,18 +395,18 @@ export function UserProfileMenu() {
             </span>
           )}
           <span className="min-w-0 text-left">
-            <span className="block truncate text-sm font-medium text-slate-100">{displayName}</span>
-            <span className="block truncate text-[11px] text-slate-400">{email}</span>
+            <span className="block truncate text-sm font-medium text-foreground">{displayName}</span>
+            <span className="block truncate text-[11px] text-muted">{email}</span>
           </span>
         </span>
-        <ChevronDown className="h-4 w-4 text-slate-400" />
+        <ChevronDown className="h-4 w-4 text-muted" />
       </button>
 
       {dropdownOpen ? (
-        <div className="absolute left-0 top-full z-40 mt-2 w-full rounded-lg border border-border bg-[#0b1322] p-1 shadow-xl md:bottom-14 md:top-auto md:mt-0">
+        <div className="absolute left-0 top-full z-40 mt-2 w-full rounded-lg border border-border bg-card p-1 shadow-xl md:bottom-14 md:top-auto md:mt-0">
           <button
             type="button"
-            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm text-slate-200 transition-colors hover:bg-slate-800/60"
+            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm text-foreground transition-colors hover:bg-surface"
             onClick={() => {
               setDropdownOpen(false);
               setProfileNameInput(fullName);
@@ -418,7 +418,7 @@ export function UserProfileMenu() {
           </button>
           <button
             type="button"
-            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm text-slate-200 transition-colors hover:bg-slate-800/60"
+            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm text-foreground transition-colors hover:bg-surface"
             onClick={() => {
               setDropdownOpen(false);
               setNewPassword("");
@@ -431,7 +431,7 @@ export function UserProfileMenu() {
           </button>
           <button
             type="button"
-            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm text-slate-200 transition-colors hover:bg-slate-800/60"
+            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm text-foreground transition-colors hover:bg-surface"
             onClick={() => {
               setDropdownOpen(false);
               setAvatarInput(avatarUrl);
@@ -507,7 +507,7 @@ export function UserProfileMenu() {
               accept="image/*"
               onChange={(event) => setAvatarFile(event.target.files?.[0] ?? null)}
             />
-            <p className="text-xs text-slate-400">Upload an image file or provide a direct image URL.</p>
+            <p className="text-xs text-muted">Upload an image file or provide a direct image URL.</p>
             <Input
               value={avatarInput}
               onChange={(event) => setAvatarInput(event.target.value)}

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils/cn";
 import { supabase } from "@/lib/supabase/client";
 import { UserProfileMenu } from "@/components/layout/user-profile-menu";
 import { useToast } from "@/components/ui/toaster";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const routes = [
   { href: "/dashboard", label: "Dashboard", icon: Gauge },
@@ -46,12 +47,12 @@ export function Sidebar() {
 
   return (
     <>
-      <aside className="hidden w-64 border-r border-border bg-[#0a1220]/90 p-4 backdrop-blur-md md:block">
+      <aside className="hidden w-64 border-r border-border bg-surface/90 p-4 backdrop-blur-md md:block">
         <div className="mb-6">
           <h1 className="flex items-center gap-2 text-lg font-semibold tracking-wide text-accent">
             <Activity className="h-5 w-5" /> SMARTFACTORY AI
           </h1>
-          <p className="mt-1 text-xs text-slate-400">Industrial IoT Analytics Hub</p>
+          <p className="mt-1 text-xs text-muted">Industrial IoT Analytics Hub</p>
         </div>
         <nav className="space-y-1">
           {routes.map((route) => {
@@ -64,7 +65,7 @@ export function Sidebar() {
                 href={route.href}
                 className={cn(
                   "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
-                  active ? "bg-accent/15 text-accent" : "text-slate-300 hover:bg-slate-800/60"
+                  active ? "bg-accent/15 text-accent" : "text-foreground/80 hover:bg-surface"
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -76,30 +77,36 @@ export function Sidebar() {
         <div className="mt-6">
           <UserProfileMenu />
         </div>
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="mt-6 flex w-full items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-slate-800/60"
-        >
-          <LogOut className="h-4 w-4" />
-          Logout
-        </button>
+        <div className="mt-4 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="flex flex-1 items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-surface"
+          >
+            <LogOut className="h-4 w-4" />
+            Logout
+          </button>
+          <ThemeToggle className="flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
+        </div>
       </aside>
 
-      <div className="sticky top-0 z-30 border-b border-border bg-[#0a1220]/95 px-4 py-3 backdrop-blur-md md:hidden">
+      <div className="sticky top-0 z-30 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur-md md:hidden">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm font-semibold tracking-wide text-accent">
             <Activity className="h-4 w-4" />
             SMARTFACTORY AI
           </div>
-          <button
-            type="button"
-            aria-label={mobileOpen ? "Close sidebar menu" : "Open sidebar menu"}
-            onClick={() => setMobileOpen((current) => !current)}
-            className="rounded-md border border-border p-2 text-slate-200 transition-colors hover:bg-slate-800/60"
-          >
-            {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
+            <button
+              type="button"
+              aria-label={mobileOpen ? "Close sidebar menu" : "Open sidebar menu"}
+              onClick={() => setMobileOpen((current) => !current)}
+              className="rounded-md border border-border p-2 text-foreground transition-colors hover:bg-surface"
+            >
+              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -111,7 +118,7 @@ export function Sidebar() {
             onClick={closeMobileMenu}
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           />
-          <aside className="absolute left-0 top-0 h-full w-72 border-r border-border bg-[#0a1220]/95 p-4 shadow-xl">
+          <aside className="absolute left-0 top-0 h-full w-72 border-r border-border bg-surface/95 p-4 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="flex items-center gap-2 text-sm font-semibold tracking-wide text-accent">
                 <Activity className="h-4 w-4" />
@@ -121,7 +128,7 @@ export function Sidebar() {
                 type="button"
                 aria-label="Close sidebar menu"
                 onClick={closeMobileMenu}
-                className="rounded-md border border-border p-1.5 text-slate-300"
+                className="rounded-md border border-border p-1.5 text-foreground/80"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -143,7 +150,7 @@ export function Sidebar() {
                     onClick={closeMobileMenu}
                     className={cn(
                       "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
-                      active ? "bg-accent/15 text-accent" : "text-slate-300 hover:bg-slate-800/60"
+                      active ? "bg-accent/15 text-accent" : "text-foreground/80 hover:bg-surface"
                     )}
                   >
                     <Icon className="h-4 w-4" />
@@ -156,7 +163,7 @@ export function Sidebar() {
             <button
               type="button"
               onClick={handleLogout}
-              className="mt-6 flex w-full items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-slate-800/60"
+              className="mt-6 flex w-full items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-surface"
             >
               <LogOut className="h-4 w-4" />
               Logout

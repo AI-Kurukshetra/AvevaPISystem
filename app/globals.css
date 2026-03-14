@@ -1,18 +1,46 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --surface: #f1f5f9;
+  --muted: #64748b;
+  --accent: #0284c7;
+  --danger: #dc2626;
+  --success: #059669;
+  --warning: #d97706;
+  --bg-gradient-start: #dbeafe;
+  --bg-gradient-end: #f8fafc;
+  --grid-line-color: rgba(148, 163, 184, 0.25);
+}
+
+.dark {
+  --background: #090d14;
+  --foreground: #d3d7de;
+  --card: #101824;
+  --border: #1e2c3f;
+  --surface: #0f1624;
+  --muted: #8896a9;
+  --accent: #2db5ff;
+  --danger: #ff5d73;
+  --success: #3dd598;
+  --warning: #f5a524;
+  --bg-gradient-start: #14253a;
+  --bg-gradient-end: #090d14;
+  --grid-line-color: rgba(31, 52, 79, 0.2);
 }
 
 body {
-  background: radial-gradient(circle at top right, #14253a, #090d14 40%);
-  color: #d3d7de;
+  background: radial-gradient(circle at top right, var(--bg-gradient-start), var(--bg-gradient-end) 40%);
+  color: var(--foreground);
 }
 
 .grid-bg {
-  background-image: linear-gradient(rgba(31, 52, 79, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(31, 52, 79, 0.2) 1px, transparent 1px);
+  background-image: linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
   background-size: 24px 24px;
 }

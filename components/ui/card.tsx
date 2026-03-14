@@ -1,4 +1,4 @@
-﻿import { ReactNode } from "react";
+import { ReactNode } from "react";
 import { cn } from "@/lib/utils/cn";
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
@@ -6,5 +6,5 @@ export function Card({ className, children }: { className?: string; children: Re
 }
 
 export function CardTitle({ children }: { children: ReactNode }) {
-  return <h3 className="text-sm text-slate-400 mb-2">{children}</h3>;
+  return <h3 className="text-sm text-muted mb-2">{children}</h3>;
 }

@@ -144,17 +144,17 @@ export function ClientDashboard({ initialData, initialAlerts, sensorTags, initia
 
       <section className="rounded-xl border border-danger/30 bg-danger/10 p-4">
         <h4 className="text-sm font-semibold text-danger">AI Anomaly Detection</h4>
-        <p className="mt-1 text-sm text-slate-300">
+        <p className="mt-1 text-sm text-foreground/80">
           Rolling-average monitor active: {anomalyCount} anomaly events detected in the visible window.
         </p>
       </section>
 
-      <section className="rounded-xl border border-border bg-[#0d1625]/80 p-4">
-        <h4 className="text-sm font-semibold text-slate-100">Incident Timeline</h4>
-        <p className="mt-1 text-xs text-slate-400">Latest correlated events from alerts and telemetry</p>
+      <section className="rounded-xl border border-border bg-surface/80 p-4">
+        <h4 className="text-sm font-semibold text-foreground">Incident Timeline</h4>
+        <p className="mt-1 text-xs text-muted">Latest correlated events from alerts and telemetry</p>
         <div className="mt-3 max-h-72 space-y-2 overflow-y-auto pr-1">
           {incidentTimeline.map((event) => (
-            <div key={event.id} className="rounded-lg border border-border/70 bg-[#0a1220] px-3 py-2">
+            <div key={event.id} className="rounded-lg border border-border/70 bg-card px-3 py-2">
               <div className="flex items-center justify-between gap-3 text-xs">
                 <p
                   className={
@@ -167,9 +167,9 @@ export function ClientDashboard({ initialData, initialAlerts, sensorTags, initia
                 >
                   {event.label}
                 </p>
-                <p className="text-slate-500">{new Date(event.timestamp).toLocaleString()}</p>
+                <p className="text-muted">{new Date(event.timestamp).toLocaleString()}</p>
               </div>
-              <p className="mt-1 text-xs text-slate-300">{event.detail}</p>
+              <p className="mt-1 text-xs text-foreground/80">{event.detail}</p>
             </div>
           ))}
         </div>

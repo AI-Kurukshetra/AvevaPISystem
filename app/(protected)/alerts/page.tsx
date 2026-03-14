@@ -192,12 +192,12 @@ export default function AlertsPage() {
       <h2 className="text-2xl font-semibold">Alerts & Alarm Management</h2>
 
       <Card className="space-y-3">
-        <p className="text-sm text-slate-300">Configure alarm threshold</p>
+        <p className="text-sm text-foreground/80">Configure alarm threshold</p>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-4">
           <select
             value={form.sensor_id}
             onChange={(e) => setForm((f) => ({ ...f, sensor_id: e.target.value }))}
-            className="rounded-md border border-border bg-[#0f1624] px-3 py-2 text-sm"
+            className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
           >
             {sensors.length === 0 ? <option value="">No sensors available</option> : null}
             {sensors.map((sensor) => (
@@ -206,7 +206,7 @@ export default function AlertsPage() {
               </option>
             ))}
           </select>
-          <select value={form.operator} onChange={(e) => setForm((f) => ({ ...f, operator: e.target.value }))} className="rounded-md border border-border bg-[#0f1624] px-3 py-2 text-sm">
+          <select value={form.operator} onChange={(e) => setForm((f) => ({ ...f, operator: e.target.value }))} className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground">
             <option value=">">Greater than (&gt;)</option>
             <option value="<">Less than (&lt;)</option>
           </select>
@@ -218,7 +218,7 @@ export default function AlertsPage() {
       <Card className="space-y-3 border-warning/30 bg-warning/10">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold text-warning">Alert Correlation</h3>
-          <span className="text-xs text-slate-400">Grouped repeated patterns</span>
+          <span className="text-xs text-muted">Grouped repeated patterns</span>
         </div>
         {isInitialLoading ? (
           <div className="space-y-2">
@@ -226,16 +226,16 @@ export default function AlertsPage() {
             <Skeleton className="h-10 w-full bg-warning/20" />
           </div>
         ) : correlatedIncidents.length === 0 ? (
-          <p className="text-xs text-slate-300">No repeated alert clusters detected yet.</p>
+          <p className="text-xs text-foreground/80">No repeated alert clusters detected yet.</p>
         ) : (
           <div className="space-y-2">
             {correlatedIncidents.map((incident) => (
-              <div key={incident.key} className="rounded-md border border-warning/30 bg-[#1d1a12] px-3 py-2">
+              <div key={incident.key} className="rounded-md border border-warning/30 bg-warning/10 px-3 py-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-warning">Cluster x{incident.count}</span>
-                  <span className="text-slate-400">{new Date(incident.latestAt).toLocaleString()}</span>
+                  <span className="text-muted">{new Date(incident.latestAt).toLocaleString()}</span>
                 </div>
-                <p className="mt-1 text-xs text-slate-200">{incident.sampleMessage}</p>
+                <p className="mt-1 text-xs text-foreground">{incident.sampleMessage}</p>
               </div>
             ))}
           </div>
@@ -246,7 +246,7 @@ export default function AlertsPage() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[760px] text-sm">
             <thead>
-              <tr className="border-b border-border text-left text-slate-400">
+              <tr className="border-b border-border text-left text-muted">
                 <th className="py-2">Time</th>
                 <th>Priority</th>
                 <th>Severity</th>
@@ -277,7 +277,7 @@ export default function AlertsPage() {
                               ? "bg-danger/20 text-danger"
                               : alert.priority === "P2"
                                 ? "bg-warning/20 text-warning"
-                                : "bg-slate-600/30 text-slate-300"
+                                : "bg-muted/20 text-foreground/80"
                           }`}
                         >
                           {alert.priority}
@@ -289,7 +289,7 @@ export default function AlertsPage() {
                       <td>
                         <div className="flex flex-wrap gap-1">
                           <Button className="px-2 py-1" onClick={() => updateStatus(alert.id, "ACKNOWLEDGED")}>Acknowledge</Button>
-                          <Button className="bg-slate-300 px-2 py-1" onClick={() => updateStatus(alert.id, "RESOLVED")}>Resolve</Button>
+                          <Button className="bg-surface border border-border text-foreground hover:bg-surface/80 px-2 py-1" onClick={() => updateStatus(alert.id, "RESOLVED")}>Resolve</Button>
                         </div>
                       </td>
                     </tr>
@@ -297,7 +297,7 @@ export default function AlertsPage() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-slate-400">
+        <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted">
           <span>
             {isInitialLoading
               ? "Loading alerts..."
@@ -307,7 +307,7 @@ export default function AlertsPage() {
             <Button type="button" className="px-2 py-1" disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
               Previous
             </Button>
-            <span className="min-w-16 text-center text-slate-300">
+            <span className="min-w-16 text-center text-foreground/80">
               Page {page} / {totalPages}
             </span>
             <Button
