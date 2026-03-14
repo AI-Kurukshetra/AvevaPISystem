@@ -102,15 +102,15 @@ export function NotificationCenter({ compact = false }: { compact?: boolean }) {
       {open ? (
         <div
           className={cn(
-            "absolute w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-border bg-card shadow-2xl ring-1 ring-white/10 backdrop-blur-md",
-            compact ? "top-10 right-0 md:top-11 md:left-0 md:right-auto" : "top-12 right-0"
+            "absolute w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-border bg-card shadow-2xl ring-1 ring-white/10",
+            compact ? "top-10 right-[-35px] md:bottom-11 md:top-auto md:left-0 md:right-auto" : "top-12 right-0"
           )}
         >
           <div className="border-b border-border px-4 py-3">
             <h3 className="text-sm font-semibold text-foreground">Notification Center</h3>
             <p className="text-xs text-muted">Live alert updates</p>
           </div>
-          <div className="max-h-96 overflow-y-auto p-2">
+          <div className="max-h-96 overflow-y-auto p-2 bg-black">
             {alerts.length === 0 ? (
               <p className="px-2 py-3 text-xs text-muted">No notifications yet.</p>
             ) : (
@@ -119,7 +119,7 @@ export function NotificationCenter({ compact = false }: { compact?: boolean }) {
                   key={alert.id}
                   className={cn(
                     "mb-2 rounded-lg border px-3 py-2",
-                    seenIds[alert.id] ? "dark:border-border bg-card" : "border-accent/40 bg-accent/10"
+                    seenIds[alert.id] ? "dark:border-border" : "border-accent/40"
                   )}
                 >
                   <div className="flex items-center justify-between gap-2 text-xs">

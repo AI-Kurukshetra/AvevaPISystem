@@ -48,7 +48,7 @@ export function Sidebar() {
 
   return (
     <>
-      <aside className="hidden w-64 border-r border-border bg-card/95 p-4 shadow-[inset_-1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-md md:block">
+      <aside className="hidden h-screen w-64 self-start border-r border-border bg-card p-4 shadow-[inset_-1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-md md:sticky md:top-0 md:flex md:flex-col">
         <div className="mb-6">
           <h1 className="flex items-center gap-2 text-lg font-semibold tracking-wide text-accent">
             <Activity className="h-5 w-5" /> SMARTFACTORY AI
@@ -75,7 +75,7 @@ export function Sidebar() {
             );
           })}
         </nav>
-        <div className="mt-6">
+        <div className="mt-auto">
           <UserProfileMenu />
         </div>
         <div className="mt-4 flex items-center gap-2">
@@ -88,7 +88,7 @@ export function Sidebar() {
             Logout
           </button>
           <NotificationCenter compact />
-          <ThemeToggle className="flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
+          <ThemeToggle className="hidden h-9 w-9 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
         </div>
       </aside>
 
@@ -100,7 +100,7 @@ export function Sidebar() {
           </div>
           <div className="flex items-center gap-2">
             <NotificationCenter compact />
-            <ThemeToggle className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
+            <ThemeToggle className="hidden h-8 w-8 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-surface" />
             <button
               type="button"
               aria-label={mobileOpen ? "Close sidebar menu" : "Open sidebar menu"}
