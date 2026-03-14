@@ -1,0 +1,18 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: radial-gradient(circle at top right, #14253a, #090d14 40%);
+  color: #d3d7de;
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(31, 52, 79, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 52, 79, 0.2) 1px, transparent 1px);
+  background-size: 24px 24px;
+}

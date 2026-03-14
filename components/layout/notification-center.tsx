@@ -1,0 +1,111 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { Bell, AlertTriangle } from "lucide-react";
+import { supabase } from "@/lib/supabase/client";
+import { cn } from "@/lib/utils/cn";
+
+type AlertItem = {
+  id: string;
+  created_at: string;
+  severity: "LOW" | "MEDIUM" | "HIGH";
+  status: "OPEN" | "ACKNOWLEDGED" | "RESOLVED";
+  message: string;
+  priority?: "P1" | "P2" | "P3";
+};
+
+export function NotificationCenter() {
+  const [open, setOpen] = useState(false);
+  const [alerts, setAlerts] = useState<AlertItem[]>([]);
+  const [seenIds, setSeenIds] = useState<Record<string, true>>({});
+
+  async function loadAlerts() {
+    const response = await fetch("/api/alerts");
+    const body = await response.json();
+    if (!response.ok) {
+      return;
+    }
+    setAlerts((body.data ?? []).slice(0, 20));
+  }
+
+  useEffect(() => {
+    void loadAlerts();
+
+    const channel = supabase
+      .channel("notification-center-live")
+      .on("postgres_changes", { event: "*", schema: "public", table: "alerts" }, () => {
+        void loadAlerts();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+    setSeenIds((current) => {
+      const next = { ...current };
+      for (const alert of alerts) {
+        next[alert.id] = true;
+      }
+      return next;
+    });
+  }, [alerts, open]);
+
+  const unreadCount = useMemo(() => alerts.filter((alert) => !seenIds[alert.id]).length, [alerts, seenIds]);
+
+  return (
+    <div className="fixed right-4 top-4 z-[60] w-11">
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        aria-label="Open notifications"
+        className="relative flex h-11 w-11 items-center justify-center rounded-full border border-border bg-[#0d1728]/95 text-slate-200 shadow-lg transition-colors hover:bg-[#13213a]"
+      >
+        <Bell className="h-5 w-5" />
+        {unreadCount > 0 ? (
+          <span className="absolute -right-1 -top-1 min-w-5 rounded-full bg-danger px-1.5 py-0.5 text-center text-[10px] font-semibold text-white">
+            {unreadCount > 9 ? "9+" : unreadCount}
+          </span>
+        ) : null}
+      </button>
+
+      {open ? (
+        <div className="absolute right-0 top-12 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-border bg-[#0b1322]/95 shadow-2xl backdrop-blur-md">
+          <div className="border-b border-border px-4 py-3">
+            <h3 className="text-sm font-semibold text-slate-100">Notification Center</h3>
+            <p className="text-xs text-slate-400">Live alert updates</p>
+          </div>
+          <div className="max-h-96 overflow-y-auto p-2">
+            {alerts.length === 0 ? (
+              <p className="px-2 py-3 text-xs text-slate-400">No notifications yet.</p>
+            ) : (
+              alerts.map((alert) => (
+                <div
+                  key={alert.id}
+                  className={cn(
+                    "mb-2 rounded-lg border px-3 py-2",
+                    seenIds[alert.id] ? "border-border/60 bg-[#0e182a]" : "border-accent/40 bg-accent/10"
+                  )}
+                >
+                  <div className="flex items-center justify-between gap-2 text-xs">
+                    <span className="inline-flex items-center gap-1 text-slate-300">
+                      <AlertTriangle className="h-3.5 w-3.5 text-warning" />
+                      {alert.priority ?? "P3"} • {alert.severity}
+                    </span>
+                    <span className="text-slate-500">{new Date(alert.created_at).toLocaleTimeString()}</span>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-200">{alert.message}</p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
