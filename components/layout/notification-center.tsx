@@ -97,7 +97,7 @@ export function NotificationCenter({ compact = false }: { compact?: boolean }) {
                   key={alert.id}
                   className={cn(
                     "mb-2 rounded-lg border px-3 py-2",
-                    seenIds[alert.id] ? "darkborder-border bg-card" : "border-accent/40 bg-accent/10"
+                    seenIds[alert.id] ? "dark:border-border bg-card" : "border-accent/40 bg-accent/10"
                   )}
                 >
                   <div className="flex items-center justify-between gap-2 text-xs">

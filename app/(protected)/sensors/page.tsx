@@ -256,7 +256,7 @@ export default function SensorsPage() {
             <tbody>
               {isInitialLoading
                 ? Array.from({ length: 8 }).map((_, index) => (
-                    <tr key={`skeleton-${index}`} className="border-b darkborder-border dark:border-border">
+                    <tr key={`skeleton-${index}`} className="border-b dark:border-border dark:border-border">
                       <td className="py-2 pr-2"><Skeleton className="h-4 w-24" /></td>
                       <td className="pr-2"><Skeleton className="h-4 w-14" /></td>
                       <td className="pr-2"><Skeleton className="h-4 w-40" /></td>
@@ -264,7 +264,7 @@ export default function SensorsPage() {
                     </tr>
                   ))
                 : pagedSensors.map((sensor) => (
-                    <tr key={sensor.id} className="border-b darkborder-border dark:border-border">
+                    <tr key={sensor.id} className="border-b dark:border-border dark:border-border">
                       <td className="py-2">{sensor.tag_name}</td>
                       <td>{sensor.unit}</td>
                       <td>{sensor.equipment?.name ?? "-"}</td>
@@ -274,7 +274,7 @@ export default function SensorsPage() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 flex items-center justify-between border-t darkborder-border pt-3 text-xs text-muted dark:border-border">
+        <div className="mt-3 flex items-center justify-between border-t dark:border-border pt-3 text-xs text-muted dark:border-border">
           <span>
             {isInitialLoading
               ? "Loading sensors..."

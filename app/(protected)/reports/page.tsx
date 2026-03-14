@@ -185,7 +185,7 @@ export default function ReportsPage() {
             <tbody>
               {isLoading ? (
                 Array.from({ length: 8 }).map((_, index) => (
-                  <tr key={`report-skeleton-${index}`} className="border-b darkborder-border dark:border-border">
+                  <tr key={`report-skeleton-${index}`} className="border-b dark:border-border dark:border-border">
                     <td className="py-2 pr-2"><Skeleton className="h-4 w-36" /></td>
                     <td className="pr-2"><Skeleton className="h-4 w-20" /></td>
                     <td className="pr-2"><Skeleton className="h-4 w-16" /></td>
@@ -200,7 +200,7 @@ export default function ReportsPage() {
                 </tr>
               ) : (
                 previewRows.map((row) => (
-                  <tr key={row.id} className="border-b darkborder-border dark:border-border">
+                  <tr key={row.id} className="border-b dark:border-border dark:border-border">
                     <td className="py-2">{new Date(row.timestamp).toLocaleString()}</td>
                     <td>{row.sensor_id.slice(0, 8)}</td>
                     <td>{Number(row.value).toFixed(2)}</td>
