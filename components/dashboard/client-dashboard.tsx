@@ -36,7 +36,7 @@ export function ClientDashboard({ initialData, initialAlerts, sensorTags, initia
   }, [sensorTags]);
 
   useEffect(() => {
-    const loaderTimer = window.setTimeout(() => setIsInitialLoading(false), 700);
+    const loaderTimer = window.setTimeout(() => setIsInitialLoading(false), 1400);
 
     async function refreshOpenAlerts() {
       const { count } = await supabase.from("alerts").select("id", { count: "exact", head: true }).eq("status", "OPEN");

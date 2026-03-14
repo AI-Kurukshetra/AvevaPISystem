@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Bell, AlertTriangle } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/cn";
@@ -18,6 +18,7 @@ export function NotificationCenter({ compact = false }: { compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const [alerts, setAlerts] = useState<AlertItem[]>([]);
   const [seenIds, setSeenIds] = useState<Record<string, true>>({});
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   async function loadAlerts() {
     const response = await fetch("/api/alerts");
@@ -56,10 +57,31 @@ export function NotificationCenter({ compact = false }: { compact?: boolean }) {
     });
   }, [alerts, open]);
 
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    function handlePointerDown(event: MouseEvent) {
+      if (!containerRef.current) {
+        return;
+      }
+
+      if (!containerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+    };
+  }, [open]);
+
   const unreadCount = useMemo(() => alerts.filter((alert) => !seenIds[alert.id]).length, [alerts, seenIds]);
 
   return (
-    <div className={cn("relative z-[60]", compact ? "w-8 md:w-9" : "w-11")}>
+    <div ref={containerRef} className={cn("relative z-[60]", compact ? "w-8 md:w-9" : "w-11")}>
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
